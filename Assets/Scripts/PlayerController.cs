@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private PhysicMaterial slickMat;
 	private Collider _playerCollider;
 
+	public List<string> keys = new List<string>();
+
 	private float timeFalling = 0f;
 	private float timeAttacking = 0f;
 

@@ -34,6 +34,58 @@ public class LoadGameManager : MonoBehaviour
 				GameLogic.instance.isInSpiritDimension = false;
 			}
 
+/*			if (data.unlockOne == 1)
+			{
+				DoorManager.instance.doors[0].unlockOne = true;
+			}
+			else
+			{
+				DoorManager.instance.doors[0].unlockOne = false;
+			}*/
+
+			/*if (data.unlockOne == 2)
+			{
+				DoorManager.instance.doors[0].unlockTwo = true;
+			}
+			else
+			{
+				DoorManager.instance.doors[0].unlockTwo = false;
+			}*/
+
+			if (data.keyOneInserted == 1)
+			{
+				DoorManager.instance.unlocks[0].keyOneInserted = true;
+				DoorManager.instance.unlocks[0].keyOneStatic.SetActive(true);
+				DoorManager.instance.unlocks[0].keyOne.SetActive(false);
+				DoorManager.instance.doors[0].unlockOne = true;
+			}
+			else if (data.hasKeyOne == 1)
+			{
+				PlayerController.instance.keys.Add(DoorManager.instance.doors[0].keyOneName);
+				DoorManager.instance.unlocks[0].keyOne.SetActive(false);
+			}
+			/*else
+			{
+				DoorManager.instance.unlocks[0].keyOneInserted = false;
+			}*/
+
+			if (data.keyTwoInserted == 1)
+			{
+				DoorManager.instance.unlocks[0].keyTwoInserted = true;
+				DoorManager.instance.unlocks[0].keyTwoStatic.SetActive(true);
+				DoorManager.instance.unlocks[0].keyTwo.SetActive(false);
+				DoorManager.instance.doors[0].unlockTwo = true;
+			}
+			else if (data.hasKeyTwo == 1)
+			{
+				PlayerController.instance.keys.Add(DoorManager.instance.doors[0].keyTwoName);
+				DoorManager.instance.unlocks[0].keyTwo.SetActive(false);
+			}
+			/*else
+			{
+				DoorManager.instance.unlocks[0].keyTwoInserted = false;
+			}*/
+
 			GameLogic.instance.hasDimSwitched = true;
 
 			if (data.GetKeys.Count > 0)

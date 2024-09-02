@@ -69,11 +69,11 @@ public class Sentry : MonoBehaviour
 			lookRotation.x = 0f;
 			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
 
-			if (agent.remainingDistance <= agent.stoppingDistance + 1f)
+			if (agent.remainingDistance <= agent.stoppingDistance + npcInfo.attackRange)
 			{
 				if (npcInfo.animator != null)
 				{
-					if (!npcInfo.animator.GetBool("isAttacking"))
+					if (npcInfo.hasFinishedAttacking)
 					{
 						npcInfo.Attack();
 					}

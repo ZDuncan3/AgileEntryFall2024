@@ -30,7 +30,7 @@ public class LoadingScreen : MonoBehaviour
     {
         loadingScreen.SetActive(true);
 
-        yield return new WaitForSeconds(2.25f);
+        //yield return new WaitForSeconds(2.25f);
 
 		AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
 

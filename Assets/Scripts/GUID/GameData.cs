@@ -16,7 +16,16 @@ public class GameData
 
     [Range(0,1), HideInInspector] public int isInSpirtDim = 0; // 0 = not in spirit dim, 1 = in spirit dim
 
-    public GameData()
+	[Range(0, 1), HideInInspector] public int hasKeyOne = 0;
+	[Range(0, 1), HideInInspector] public int hasKeyTwo = 0;
+
+	[Range(0, 1), HideInInspector] public int unlockOne = 0;
+	[Range(0, 1), HideInInspector] public int unlockTwo = 0;
+
+	[Range(0, 1), HideInInspector] public int keyOneInserted = 0;
+	[Range(0, 1), HideInInspector] public int keyTwoInserted = 0;
+
+	public GameData()
     {
         foreach (KeyValuePair<string, Transform> item in TransformRegister.instance.GetObjectTransforms)
         {
@@ -37,7 +46,89 @@ public class GameData
         {
             isInSpirtDim = 0;
         }
-    }
+
+        if (DoorManager.instance.doors[0].unlockOne)
+        {
+            unlockOne = 1;
+        }
+        else
+        {
+            unlockOne = 0;
+        }
+
+		if (DoorManager.instance.doors[0].unlockTwo)
+		{
+			unlockTwo = 1;
+		}
+		else
+		{
+			unlockTwo = 0;
+		}
+
+        if (PlayerController.instance.keys.Count > 1)
+        {
+			if (PlayerController.instance.keys[0].Equals("Key 1") || PlayerController.instance.keys[1].Equals("Key 1"))
+			{
+				hasKeyOne = 1;
+			}
+			else
+			{
+				hasKeyOne = 0;
+			}
+
+			if (PlayerController.instance.keys[0].Equals("Key 2") || PlayerController.instance.keys[1].Equals("Key 2"))
+			{
+				hasKeyTwo = 1;
+			}
+			else
+			{
+				hasKeyTwo = 0;
+			}
+		}
+        else if (PlayerController.instance.keys.Count > 0)
+        {
+			if (PlayerController.instance.keys[0].Equals("Key 1"))
+			{
+				hasKeyOne = 1;
+			}
+			else
+			{
+				hasKeyOne = 0;
+			}
+
+			if (PlayerController.instance.keys[0].Equals("Key 2"))
+			{
+				hasKeyTwo = 1;
+			}
+			else
+			{
+				hasKeyTwo = 0;
+			}
+		}
+        else
+        {
+            hasKeyOne = 0;
+            hasKeyTwo = 0;
+        }
+
+        if (DoorManager.instance.unlocks[0].keyOneInserted)
+        {
+            keyOneInserted = 1;
+        }
+        else
+        {
+            keyOneInserted = 0;
+        }
+
+		if (DoorManager.instance.unlocks[0].keyTwoInserted)
+		{
+			keyTwoInserted = 1;
+		}
+		else
+		{
+			keyTwoInserted = 0;
+		}
+	}
 }
 
 [System.Serializable]

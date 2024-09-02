@@ -9,8 +9,8 @@ public class Damageable : MonoBehaviour
 
 	public bool canBeTargeted = true; // can be targeted by an AI
 
-	[Range(0, int.MaxValue)] public int health;
-	[Range(0, int.MaxValue)] public int maxHealth;
+	[Range(0, 999999)] public int health;
+	[Range(0, 999999)] public int maxHealth;
 
 	public virtual void TakeDamage(int damageToDeal)
 	{
@@ -26,5 +26,22 @@ public class Damageable : MonoBehaviour
 		{
 			health -= damageToDeal;
 		}
+	}
+
+	protected virtual void FixedUpdate()
+	{
+		if (health > maxHealth)
+		{
+			health = maxHealth;
+		}
+		else if (health <= 0)
+		{
+			KillObject();
+		}
+	}
+
+	protected virtual void KillObject()
+	{
+		Destroy(gameObject);
 	}
 }

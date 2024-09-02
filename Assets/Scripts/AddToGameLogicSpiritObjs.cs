@@ -6,7 +6,7 @@ public class AddToGameLogicSpiritObjs : MonoBehaviour
 {
     [SerializeField] private bool _disabledBySpiritDim = false;
 
-	private void Awake()
+	private void Start()
 	{
 		if (_disabledBySpiritDim)
 		{

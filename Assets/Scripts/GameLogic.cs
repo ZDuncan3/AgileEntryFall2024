@@ -68,42 +68,6 @@ public class GameLogic : MonoBehaviour
 		}
 	}
 
-	private IEnumerator CheckDim()
-	{
-		while (true)
-		{
-			yield return new WaitForSecondsRealtime(0.075f);
-
-			if (hasDimSwitched)
-			{
-				if (isInSpiritDimension)
-				{
-					foreach (GameObject obj in objsDisabledInSpiritDim)
-					{
-						obj.SetActive(false);
-					}
-					foreach (GameObject obj in objsEnabledInSpiritDim)
-					{
-						obj.SetActive(true);
-					}
-				}
-				else
-				{
-					foreach (GameObject obj in objsDisabledInSpiritDim)
-					{
-						obj.SetActive(true);
-					}
-					foreach (GameObject obj in objsEnabledInSpiritDim)
-					{
-						obj.SetActive(false);
-					}
-				}
-
-				hasDimSwitched = false;
-			}
-		}
-	}
-
 	// Uncomment to enable save-on-application-exit
 	/*private void OnApplicationQuit()
 	{

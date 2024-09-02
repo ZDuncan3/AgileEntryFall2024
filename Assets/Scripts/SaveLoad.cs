@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System;
 
 public static class SaveLoad
 {
@@ -10,12 +11,20 @@ public static class SaveLoad
 	{
 		BinaryFormatter bf = new BinaryFormatter();
 		string path = Application.persistentDataPath + "/" + fileName + ".sav";
-		Debug.Log($"Saving to: {path}");
-		FileStream fs = new FileStream(path, FileMode.Create);
-		GameData data = new GameData();
-		bf.Serialize(fs, data);
-		fs.Close();
-		PlayerPrefs.Save();
+
+		try
+		{
+			FileStream fs = new FileStream(path, FileMode.Create);
+			GameData data = new GameData();
+			bf.Serialize(fs, data);
+			fs.Close();
+			Debug.Log($"Saving to: {path}");
+			PlayerPrefs.Save();
+		}
+		catch (Exception exc)
+		{
+			Debug.LogError($"Unable to save to: {path}\n{exc}");
+		}
 	}
 
 	public static GameData Load(string fileName)
@@ -41,5 +50,13 @@ public static class SaveLoad
 		}
 
 		return null;
+	}
+
+	public static void DeleteSave(string fileName)
+	{
+		string path = Application.persistentDataPath + "/" + fileName + ".sav";
+		Debug.Log($"Deleting file: {path}");
+		File.Delete(path);
+		PlayerPrefs.Save();
 	}
 }

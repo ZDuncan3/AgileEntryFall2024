@@ -14,15 +14,18 @@ public class SentryAnimator : MonoBehaviour
 
 	private void Update()
 	{
-        if (_sentryAI != null && _sentryAI.npcInfo.animator != null)
+        if (_sentryAI != null)
 		{
-			if (_sentryAI.target != null && _sentryAI.agent.remainingDistance > _sentryAI.agent.stoppingDistance)
+			if (_sentryAI.npcInfo.animator != null)
 			{
-				_sentryAI.npcInfo.animator.SetBool("isWalking", true);
-			}
-			else
-			{
-				_sentryAI.npcInfo.animator.SetBool("isWalking", false);
+				if (_sentryAI.target != null && _sentryAI.agent.remainingDistance > _sentryAI.agent.stoppingDistance)
+				{
+					_sentryAI.npcInfo.animator.SetBool("isWalking", true);
+				}
+				else
+				{
+					_sentryAI.npcInfo.animator.SetBool("isWalking", false);
+				}
 			}
 		}
 	}

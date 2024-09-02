@@ -17,9 +17,23 @@ public class FPS : MonoBehaviour
 	{
 		if (GameLogic.instance.showFps)
 		{
-			deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+			deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
 			float fps = 1.0f / deltaTime;
+
+			if (fps < 0)
+			{
+				fps = 0;
+			}
+			else if (fps > Application.targetFrameRate)
+			{
+				fps = Application.targetFrameRate;
+			}
+
 			fpsText.text = Mathf.Ceil(fps).ToString();
+		}
+		else
+		{
+			fpsText.text = "";
 		}
 	}
 }

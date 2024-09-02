@@ -8,6 +8,8 @@ public class GUIDObject : MonoBehaviour
 {
     [SerializeField] private string _ID; // remove serializeField
 
+	public string ID { get { return _ID; } }
+
 	private void OnEnable()
 	{
 		if (_ID == string.Empty)
